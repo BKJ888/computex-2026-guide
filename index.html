@@ -3,104 +3,66 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>COMPUTEX 2026 Role-based Interactive Guide</title>
+  <title>COMPUTEX 2026 Interactive Guide</title>
+  <meta name="description" content="COMPUTEX 2026 互動式觀展攻略：路線、廠商、時間軸、分析師視角、收藏清單。" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="hero">
-    <nav class="topbar">
-      <div class="brand"><span class="brand-dot"></span>COMPUTEX 2026 Intelligence Guide</div>
-      <div class="nav-actions">
-        <button class="ghost" data-view="overview">Overview</button>
-        <button class="ghost" data-view="roles">Role Routes</button>
-        <button class="ghost" data-view="vendors">Vendors</button>
-        <button class="ghost" data-view="planner">Planner</button>
-      </div>
+  <div class="noise"></div>
+  <aside class="side">
+    <div class="brand">
+      <div class="logo">CX</div>
+      <div><b>COMPUTEX 2026</b><span>Interactive Guide</span></div>
+    </div>
+    <nav>
+      <button class="nav active" data-view="home">Overview</button>
+      <button class="nav" data-view="routes">5 Routes</button>
+      <button class="nav" data-view="vendors">Vendors</button>
+      <button class="nav" data-view="timeline">Timeline</button>
+      <button class="nav" data-view="analyst">Analyst Mode</button>
+      <button class="nav" data-view="saved">Saved</button>
     </nav>
-    <section class="hero-grid">
-      <div>
-        <p class="eyebrow">AI Together · Taipei · June 2–5, 2026</p>
-        <h1>把 COMPUTEX 變成「業務、行銷、數據、分析師、政府計畫」都能用的互動式觀展系統</h1>
-        <p class="hero-copy">這版不只是展覽地圖，而是把官方展區、廠商資料、角色任務、提問腳本與現場紀錄整合成一套可放 GitHub Pages 的 HTML 網站。</p>
-        <div class="hero-cta">
-          <button class="primary" data-view="roles">選擇角色路線</button>
-          <button class="secondary" data-view="vendors">查看廠商資料庫</button>
+    <div class="side-card">
+      <small>GitHub Pages</small>
+      <p>把整個資料夾上傳，或直接上傳這 4 個檔案即可。</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="hero">
+      <div class="hero-copy">
+        <div class="kicker">2026.06.02 — 06.05 · Taipei</div>
+        <h1>COMPUTEX 2026<br><span>完整互動式觀展攻略</span></h1>
+        <p>為 PM、數據分析師、產業分析師設計：快速找到路線、廠商、Keynote、必問問題與可追蹤指標。</p>
+        <div class="hero-actions">
+          <button class="primary" data-jump="routes">開始看路線</button>
+          <button class="ghost" data-jump="vendors">搜尋廠商</button>
         </div>
       </div>
-      <div class="hero-card">
-        <div class="metric"><b id="vendorCount">0</b><span>preloaded vendors</span></div>
-        <div class="metric"><b>18</b><span>official show areas</span></div>
-        <div class="metric"><b>7</b><span>role-based routes</span></div>
-        <p class="note">支援搜尋、角色篩選、收藏、CSV 匯入、CSV 匯出、提問腳本、現場筆記。</p>
+      <div class="hero-panel">
+        <div class="metric"><b id="mRoutes">5</b><span>議題路線</span></div>
+        <div class="metric"><b id="mVendors">0</b><span>重點廠商/展區</span></div>
+        <div class="metric"><b id="mKeynotes">0</b><span>CEO Keynotes</span></div>
+        <div class="metric"><b>6,000+</b><span>攤位規模</span></div>
       </div>
-    </section>
-  </header>
+    </header>
 
-  <main>
-    <section id="overview" class="view active">
-      <div class="section-head">
-        <p class="eyebrow">Overview</p>
-        <h2>官方展區 × 角色目標 × 互動資料庫</h2>
-      </div>
-      <div class="cards three">
-        <article class="card"><h3>官方展區架構</h3><p>以 COMPUTEX 官方 Exhibition Area 為主，包括 Advanced Communication、AI Computing、Robotics、TechXperience、InnoVEX 等。</p></article>
-        <article class="card"><h3>角色式觀展</h3><p>不同角色不看同一件事：業務看 leads，行銷看內容題材，數據看指標，分析師看產業訊號，政府計畫看政策與補助落點。</p></article>
-        <article class="card"><h3>可持續更新</h3><p>官方名單後續若增加，只要匯入 CSV，就能自動進入搜尋、篩選、收藏與路線推薦。</p></article>
-      </div>
-      <div class="panel">
-        <h3>COMPUTEX 2026 官方展區統計</h3>
-        <div id="areaStats" class="area-grid"></div>
-      </div>
-    </section>
-
-    <section id="roles" class="view">
-      <div class="section-head">
-        <p class="eyebrow">Role Routes</p>
-        <h2>依不同部門重新設計觀展路徑</h2>
-      </div>
-      <div id="roleTabs" class="role-tabs"></div>
-      <div id="roleRoute" class="route-detail"></div>
-    </section>
-
-    <section id="vendors" class="view">
-      <div class="section-head">
-        <p class="eyebrow">Vendor Database</p>
-        <h2>廠商搜尋、分類、收藏與匯入</h2>
-      </div>
-      <div class="toolbar">
-        <input id="searchInput" placeholder="搜尋公司、品牌、產品、標籤，例如 NVIDIA、AI、Robotics、DataCenter" />
-        <select id="roleFilter"><option value="all">所有角色</option></select>
-        <select id="areaFilter"><option value="all">所有展區</option></select>
-        <button class="secondary" id="clearFilters">清除</button>
-      </div>
-      <div class="import-box">
-        <div>
-          <h3>新增全部廠商資料</h3>
-          <p>拿到官方 Exhibitor CSV 後，可貼上或匯入：Company, Brand, Area, Booth, Products, Country, Tags。網站會即時更新。</p>
-        </div>
-        <div class="import-actions">
-          <input id="csvFile" type="file" accept=".csv" />
-          <button id="exportBtn" class="secondary">匯出目前清單 CSV</button>
-        </div>
-      </div>
-      <div id="vendorList" class="vendor-grid"></div>
-    </section>
-
-    <section id="planner" class="view">
-      <div class="section-head">
-        <p class="eyebrow">Planner</p>
-        <h2>我的觀展清單與現場紀錄</h2>
-      </div>
-      <div class="cards two">
-        <div class="panel"><h3>已收藏廠商</h3><div id="savedList"></div></div>
-        <div class="panel"><h3>現場筆記</h3><textarea id="notes" placeholder="例如：緯穎液冷方案可追問合作名單；某廠商適合安排會後訪談……"></textarea><button id="saveNotes" class="primary small">儲存筆記</button></div>
-      </div>
-    </section>
+    <section id="home" class="view show"></section>
+    <section id="routes" class="view"></section>
+    <section id="vendors" class="view"></section>
+    <section id="timeline" class="view"></section>
+    <section id="analyst" class="view"></section>
+    <section id="saved" class="view"></section>
   </main>
 
-  <div id="modal" class="modal hidden"><div class="modal-card"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-bg" data-close></div>
+    <div class="modal-box">
+      <button class="close" data-close>×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
 
-  <footer>Built for GitHub Pages · Data source should be verified with official COMPUTEX exhibitor list before publication.</footer>
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
