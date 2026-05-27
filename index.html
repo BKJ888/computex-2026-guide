@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COMPUTEX 2026 Interactive Guide</title>
+  <meta name="description" content="COMPUTEX 2026 互動式觀展攻略：路線、廠商、時間軸、分析師視角、收藏清單。" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <aside class="side">
+    <div class="brand">
+      <div class="logo">CX</div>
+      <div><b>COMPUTEX 2026</b><span>Interactive Guide</span></div>
+    </div>
+    <nav>
+      <button class="nav active" data-view="home">Overview</button>
+      <button class="nav" data-view="routes">5 Routes</button>
+      <button class="nav" data-view="vendors">Vendors</button>
+      <button class="nav" data-view="timeline">Timeline</button>
+      <button class="nav" data-view="analyst">Analyst Mode</button>
+      <button class="nav" data-view="saved">Saved</button>
+    </nav>
+    <div class="side-card">
+      <small>GitHub Pages</small>
+      <p>把整個資料夾上傳，或直接上傳這 4 個檔案即可。</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="hero">
+      <div class="hero-copy">
+        <div class="kicker">2026.06.02 — 06.05 · Taipei</div>
+        <h1>COMPUTEX 2026<br><span>完整互動式觀展攻略</span></h1>
+        <p>為 PM、數據分析師、產業分析師設計：快速找到路線、廠商、Keynote、必問問題與可追蹤指標。</p>
+        <div class="hero-actions">
+          <button class="primary" data-jump="routes">開始看路線</button>
+          <button class="ghost" data-jump="vendors">搜尋廠商</button>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="metric"><b id="mRoutes">5</b><span>議題路線</span></div>
+        <div class="metric"><b id="mVendors">0</b><span>重點廠商/展區</span></div>
+        <div class="metric"><b id="mKeynotes">0</b><span>CEO Keynotes</span></div>
+        <div class="metric"><b>6,000+</b><span>攤位規模</span></div>
+      </div>
+    </header>
+
+    <section id="home" class="view show"></section>
+    <section id="routes" class="view"></section>
+    <section id="vendors" class="view"></section>
+    <section id="timeline" class="view"></section>
+    <section id="analyst" class="view"></section>
+    <section id="saved" class="view"></section>
+  </main>
+
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-bg" data-close></div>
+    <div class="modal-box">
+      <button class="close" data-close>×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
